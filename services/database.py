@@ -5,7 +5,7 @@ conn = mysql.connector.connect(
     user='root',
     password='LnsTetyzLmcVRAPgxzIMWSqRejqNVmsy',
     database='railway',
-    port=49703
+    port=49703,
     auth_plugin='mysql_native_password'
 )
 
