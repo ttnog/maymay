@@ -1,14 +1,25 @@
-import sqlite3
+import mysql.connector
 
-con = sqlite3.connect('services/crud_python.db', check_same_thread=False)
-cursor = con.cursor()
+conn = mysql.connector.connect(
+    host='roundhouse.proxy.rlwy.net',
+    user='root',
+    password='LnsTetyzLmcVRAPgxzIMWSqRejqNVmsy',
+    database='railway',
+    port=49703
+    auth_plugin='mysql_native_password'
+)
+
+cursor = conn.cursor()
+
 cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Cliente (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        cliData TEXT NOT NULL,
-        cliComeu TEXT NOT NULL,
-        cliMood INTEGER,
-        cliFofoca TEXT
-    )
+CREATE TABLE IF NOT EXISTS Cliente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    data VARCHAR(10) NOT NULL,
+    comeu VARCHAR(10) NOT NULL,
+    mood INT NOT NULL,
+    fofoca TEXT
+)
 """)
-con.commit()
+
+conn.commit()
+conn.close()
