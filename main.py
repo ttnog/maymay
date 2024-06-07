@@ -31,7 +31,7 @@ st.markdown("<h1 style='text-align: center;'>COMO FOI SEU DIA, MAY MAY?</h1>", u
 with st.form(key='include_cliente', clear_on_submit=True):
 
     # Dia
-    input_dia = st.date_input('Que dia é hoje?', value=None)
+    input_data = st.date_input('Que dia é hoje?', value=None)
     st.markdown("---")
     # Comeu
     input_comeu = st.radio('Fez todas as refeições hoje?', ["SIM", 'NÃO (ta fudida)'])
