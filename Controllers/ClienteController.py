@@ -1,16 +1,32 @@
-import services.database as db
-import models.Cliente as cliente
+import mysql.connector
+import models.Cliente as Cliente
+
+def conexao():
+    conn = mysql.connector.connect(
+        host='roundhouse.proxy.rlwy.net',
+        user='root',
+        password='LnsTetyzLmcVRAPgxzIMWSqRejqNVmsy',
+        database='railway',
+        port=49703,
+        auth_plugin='mysql_native_password'
+    )
+    return conn
 
 def Incluir(cliente):
-    db.cursor.execute("""
-        INSERT INTO Cliente(cliData, cliComeu, cliMood, cliFofoca) 
-        VALUES (?, ?, ?, ?)""", (cliente.data, cliente.comeu, cliente.mood, cliente.fofoca))
-    db.con.commit()
+    conn = conexao()
+    cursor = conn.cursor()
+    cursor.execute("""
+    INSERT INTO Cliente (data, comeu, mood, fofoca) VALUES (%s, %s, %s, %s)
+    """, (cliente.data, cliente.comeu, cliente.mood, cliente.fofoca))
+    conn.commit()
+    conn.close()
 
 def SelecionarTodos():
-    db.cursor.execute('SELECT * FROM Cliente')
-    customerList = []
-
-    for row in db.cursor.fetchall():
-        customerList.append(cliente.Cliente(row[0], row[1], row[2], row[3], row[4]))
-    return customerList
+    conn = conexao()
+    cursor = conn.cursor()
+    cursor.execute("SELECT data, comeu, mood, fofoca FROM Cliente")
+    clientes = []
+    for linha in cursor.fetchall():
+        clientes.append(Cliente.Cliente(*linha))
+    conn.close()
+    return clientes
