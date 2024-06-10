@@ -13,20 +13,32 @@ def conexao():
     return conn
 
 def Incluir(cliente):
-    conn = conexao()
-    cursor = conn.cursor()
-    cursor.execute("""
-    INSERT INTO Cliente (data, comeu, mood, fofoca) VALUES (%s, %s, %s, %s)
-    """, (cliente.data, cliente.comeu, cliente.mood, cliente.fofoca))
-    conn.commit()
-    conn.close()
+    try:
+        conn = conexao()
+        cursor = conn.cursor()
+        cursor.execute("""
+        INSERT INTO Cliente (data, comeu, mood, fofoca, horario) VALUES (%s, %s, %s, %s, %s)
+        """, (cliente.data, cliente.comeu, cliente.mood, cliente.fofoca, cliente.horario))
+        conn.commit()
+    except mysql.connector.Error as err:
+        print(f"Erro: {err}")
+    finally:
+        if conn.is_connected():
+            cursor.close()
+            conn.close()
 
 def SelecionarTodos():
-    conn = conexao()
-    cursor = conn.cursor()
-    cursor.execute("SELECT data, comeu, mood, fofoca FROM Cliente")
-    clientes = []
-    for linha in cursor.fetchall():
-        clientes.append(Cliente.Cliente(*linha))
-    conn.close()
-    return clientes
+    try:
+        conn = conexao()
+        cursor = conn.cursor()
+        cursor.execute("SELECT data, comeu, mood, fofoca, horario FROM Cliente")
+        clientes = []
+        for linha in cursor.fetchall():
+            clientes.append(Cliente.Cliente(*linha))
+        return clientes
+    except mysql.connector.Error as err:
+        print(f"Erro: {err}")
+    finally:
+        if conn.is_connected():
+            cursor.close()
+            conn.close()

@@ -14,7 +14,8 @@ cursor = conn.cursor()
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    data VARCHAR(10) NOT NULL,
+    data DATE NOT NULL,
+    horario TIME,          
     comeu VARCHAR(10) NOT NULL,
     mood INT NOT NULL,
     fofoca TEXT
