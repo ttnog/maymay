@@ -29,7 +29,8 @@ with st.form(key='include_cliente', clear_on_submit=True):
     input_mood = st.slider("Como está seu mood hoje? (0 TA UM CU, 10 TA RADIANTE).", 0, 10, 0)
     st.markdown("---")
     # Fofoca
-    input_fofoca = st.text_input('Use esse espaço para desabafo de **QUALQUER** coisa que voce quiser:')
+    st.write("Our secret space, tell me something that you d like me to know or just gossips, whatever u want")
+    input_fofoca = st.text_input('nobody can hear us here.')
     st.markdown("---")
 
     input_button_submit = st.form_submit_button('Enviar')
