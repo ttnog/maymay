@@ -5,7 +5,7 @@ import time
 from datetime import datetime, timedelta
 
 # Título centralizado
-st.markdown("<h1 style='text-align: center;'> </h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'> COMO FOI SEU DIA, MAY MAY?</h1>", unsafe_allow_html=True)
 
 # Obter a data de hoje
 hoje = datetime.now()
