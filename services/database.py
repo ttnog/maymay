@@ -17,8 +17,10 @@ CREATE TABLE IF NOT EXISTS Cliente (
     data DATE NOT NULL,
     horario TIME,          
     comeu VARCHAR(10) NOT NULL,
+    remedio VARCHAR(10) NOT NULL,
     mood INT NOT NULL,
-    fofoca TEXT
+    fofoca TEXT,
+               
 )
 """)
 

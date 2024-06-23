@@ -23,7 +23,8 @@ def adicionar_colunas():
             'horario': 'TIME',
             'comeu': 'VARCHAR(10) NOT NULL',
             'mood': 'INT NOT NULL',
-            'fofoca': 'TEXT'
+            'fofoca': 'TEXT',
+            'remedio': 'VARCHAR(10) NOT NULL',
         }
 
         # Verificar e adicionar cada coluna, se necessário

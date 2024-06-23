@@ -17,8 +17,8 @@ def Incluir(cliente):
         conn = conexao()
         cursor = conn.cursor()
         cursor.execute("""
-        INSERT INTO Cliente (data, comeu, mood, fofoca, horario) VALUES (%s, %s, %s, %s, %s)
-        """, (cliente.data, cliente.comeu, cliente.mood, cliente.fofoca, cliente.horario))
+        INSERT INTO Cliente (data, comeu, remedio, mood, fofoca, horario) VALUES (%s, %s, %s, %s, %s, %s)
+        """, (cliente.data, cliente.comeu, cliente.remedio, cliente.mood, cliente.fofoca, cliente.horario))
         conn.commit()
     except mysql.connector.Error as err:
         print(f"Erro: {err}")
@@ -31,7 +31,7 @@ def SelecionarTodos():
     try:
         conn = conexao()
         cursor = conn.cursor()
-        cursor.execute("SELECT data, comeu, mood, fofoca, horario FROM Cliente")
+        cursor.execute("SELECT data, comeu, remedio, mood, fofoca, horario FROM Cliente")
         clientes = []
         for linha in cursor.fetchall():
             clientes.append(Cliente.Cliente(*linha))

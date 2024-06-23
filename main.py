@@ -5,7 +5,7 @@ import time
 from datetime import datetime, timedelta
 
 # Título centralizado
-st.markdown("<h1 style='text-align: center;'>COMO FOI SEU DIA, MAY MAY?</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'> </h1>", unsafe_allow_html=True)
 
 # Obter a data de hoje
 hoje = datetime.now()
@@ -25,7 +25,10 @@ with st.form(key='include_cliente', clear_on_submit=True):
     # Comeu
     input_comeu = st.radio('Fez todas as refeições hoje?', ["SIM", 'NÃO'])
     st.markdown("---")
-    # Mood
+    #REMEDIO
+    input_remedio = st.radio('Tomou todos os remédios?', ["SIM", 'NÃO'])
+    st.markdown("---")
+    #MOOD
     input_mood = st.slider("Como está seu mood hoje? (0 TA UM CU, 10 TA RADIANTE).", 0, 10, 0)
     st.markdown("---")
     # Fofoca
@@ -40,7 +43,7 @@ if input_button_submit:
     # Converte input_data e input_horario para strings no formato adequado
     data_str = input_data.strftime('%Y-%m-%d')
     horario_str = input_horario.strftime('%H:%M:%S') if input_horario else None
-    ClienteController.Incluir(cliente.Cliente(0, data_str, input_comeu, input_mood, input_fofoca, horario_str))
+    ClienteController.Incluir(cliente.Cliente(0, data_str, input_comeu, input_remedio, input_mood, input_fofoca, horario_str))
     # ESPERA
     with st.spinner('Cadastrando...'):
         time.sleep(2)
